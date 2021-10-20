@@ -1,0 +1,58 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="container col-md-6 mt-3">
+		<h3 class="text-success text-center text-capitalize">CLASS DETAIL</h3>
+		<a class="btn btn-outline-success mt-2" href="{{ path('book_index') }}"> < CLASS LIST</a>
+		<table class="table table-striped text-center mt-2">
+			{# <thead>
+				<tr>
+					<th></th>
+					<th>Cover</th>
+					<th>Author</th>
+					<th>Publisher</th>
+					<th>Quantity</th>
+					<th>Price</th>
+					{% if is_granted('ROLE_ADMIN') %}
+						<th>Menu</th>
+					{% endif %}
+				</tr>
+			</thead> #}
+			<tbody>
+                <tr>
+                    <th>Name</th>
+                    <td>{{ aCourseClass.name }}</td>
+                </tr>
+                <tr>
+                    <th></th>
+                    <td>{{ aCourseClass.name }}</td>
+                </tr>
+				<tr>
+					<td>{{ book.title }}</td>
+					<td>
+						<img src="{{ asset('images/book/'~book.cover)}}" width="120" height="150">
+					</td>
+					<td>
+						{% for a in book.author %}
+							<a href="{{ path('author_detail', {'id': a.id }) }}">
+								{{ a.name }}
+							</a>
+							<br>
+						{% endfor %}
+					</td>
+					<td>{{ book.publisher }}</td>
+					<td>{{ book.quantity }}</td>
+					<td>{{ book.price }}
+						USD
+					</td>
+					{% if is_granted('ROLE_ADMIN') %}
+						<td>
+							<a class="btn btn-info" href="{{ path('book_edit', {'id': book.id}) }}">EDIT</a>
+							<a class="btn btn-warning" href="{{ path('book_delete', {'id': book.id}) }}" onclick="return confirm('Are you sure to delete this book ?')">DELETE</a>
+						</td>
+					{% endif %}
+				</tr>
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

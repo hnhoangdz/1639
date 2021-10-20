@@ -31,7 +31,7 @@ class Course
 
     /**
      * @ORM\ManyToOne(targetEntity=Category::class, inversedBy="courses")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $categoryID;
 

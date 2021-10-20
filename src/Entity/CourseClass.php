@@ -41,6 +41,16 @@ class CourseClass
      */
     private $studentID;
 
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $dateStart;
+
+    /**
+     * @ORM\Column(type="date")
+     */
+    private $dateEnd;
+
     public function __construct()
     {
         $this->studentID = new ArrayCollection();
@@ -107,6 +117,30 @@ class CourseClass
     public function removeStudentID(Student $studentID): self
     {
         $this->studentID->removeElement($studentID);
+
+        return $this;
+    }
+
+    public function getDateStart(): ?\DateTimeInterface
+    {
+        return $this->dateStart;
+    }
+
+    public function setDateStart(\DateTimeInterface $dateStart): self
+    {
+        $this->dateStart = $dateStart;
+
+        return $this;
+    }
+
+    public function getDateEnd(): ?\DateTimeInterface
+    {
+        return $this->dateEnd;
+    }
+
+    public function setDateEnd(\DateTimeInterface $dateEnd): self
+    {
+        $this->dateEnd = $dateEnd;
 
         return $this;
     }
