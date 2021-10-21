@@ -40,6 +40,11 @@ class Course
      */
     private $courseClasses;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $image;
+
     public function __construct()
     {
         $this->courseClasses = new ArrayCollection();
@@ -112,6 +117,18 @@ class Course
                 $courseClass->setCourseID(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): self
+    {
+        $this->image = $image;
 
         return $this;
     }
