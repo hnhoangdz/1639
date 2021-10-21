@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="container col-md-6 mt-3">
+		<h3 class="text-success text-center text-capitalize">COURSE DETAIL</h3>
+		<a class="btn btn-outline-success mt-2" href="{{ path('course_index') }}">COURSE LIST</a>
+		<table class="table table-striped text-center mt-2">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Description</th>
+					<th>Category</th>
+					{# {% if is_granted('ROLE_ADMIN') %} #}
+						<th>Menu</th>
+					{# {% endif %} #}
+				</tr>
+			</thead>
+			<tbody>
+				<tr style="font-family: Segoe UI; font-size: 18px;">
+					<td>{{ aCourse.name }}</td>
+					<td>{{ aCourse.description }}</td>
+					<td>{{ aCourse.categoryID.name }}</td>
+					{# {% if is_granted('ROLE_ADMIN') %} #}
+						<td>
+							<a class="btn btn-info" href="{{ path('course_edit', {'id': aCourse.id}) }}">EDIT</a>
+							<a class="btn btn-warning" href="{{ path('course_delete', {'id': aCourse.id}) }}" onclick="return confirm('Are you sure to delete this category ?')">DELETE</a>
+						</td>
+					{# {% endif %} #}
+				</tr>
+			</tbody>
+		</table>
+	</div>
+{% endblock %}
