@@ -1,0 +1,56 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Lobster&display=swap');
+* {
+    padding: 0;
+    margin: 0;
+ }
+  
+ body {
+    background: #f4f1e5;
+    color: #054963;
+    font-family: helvetica, sans-serif;
+ }
+   ul li {
+    float: left;
+    list-style: none;
+    margin-right: 1em;
+    font-family: 'Architects Daughter', cursive;
+    font-size: 20px;
+    padding: 10px; 
+    
+   }
+    
+   li a {
+    color: #544738;
+    text-decoration: none;
+    float: left;
+   }
+    
+   li a:hover {
+    color: #04678c;
+   }
+   .left a:hover {
+ 
+    /*Transition*/ 
+    -webkit-transition:All .5s ease;
+    -moz-transition:All .5s ease;
+    -o-transition:All .5s ease;
+    
+    /*Transform*/ 
+    -webkit-transform: rotate(-10deg) scale(1.2);
+    -moz-transform: rotate(-10deg) scale(1.2);
+    -o-transform: rotate(-10deg) scale(1.2);
+   }
+    
+   .right a:hover {
+    
+    /*Transition*/ 
+    -webkit-transition:All .5s ease;
+    -moz-transition:All .5s ease;
+    -o-transition:All .5s ease;
+    
+    /*Transform*/ 
+    -webkit-transform: rotate(10deg) scale(1.2);
+    -moz-transform: rotate(10deg) scale(1.2);
+    -o-transform: rotate(10deg) scale(1.2);
+   }
