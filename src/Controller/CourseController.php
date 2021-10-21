@@ -42,7 +42,7 @@ class CourseController extends AbstractController
     }
 
     /**
-     * @Route("/category/add", name="course_add")
+     * @Route("/course/add", name="course_add")
      */
     public function courseAdd(Request $request){
         $course = new Course();
@@ -84,7 +84,7 @@ class CourseController extends AbstractController
                 return $this->redirectToRoute('course_index');
             }
             return $this->render(
-                "category/edit.html.twig",
+                "course/edit.html.twig",
                 [
                     'form' => $form->createView()
                 ]
@@ -93,7 +93,7 @@ class CourseController extends AbstractController
     }
 
     /**
-     * @Route("category/delete/{id}", name="course_delete")
+     * @Route("course/delete/{id}", name="course_delete")
      */
     public function deleteCourse($id)
     {
