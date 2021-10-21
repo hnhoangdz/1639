@@ -28,9 +28,14 @@
 		<nav class="navbar navbar-light" style="background-color: #6aa4ba;">
 		<div class="container mt-4">
 			<ul id="nav">
-				<li class="left">
+				<li class="right">
 					<h2>
 						<a href="{{ path('home') }}">Home</a>
+					</h2>
+				</li>
+				<li class="left">
+					<h2>
+						<a href="{{ path('admin_index') }}">Admin</a>
 					</h2>
 				</li>
 				<li class="right">
@@ -60,7 +65,7 @@
 				</li>
 				<li class="left">
 					<h2>
-						<a href="#">Logout</a>
+						<a href="{{ path('app_logout') }}">Logout</a>
 					</h2>
 				</li>
 			</ul>

@@ -17,6 +17,7 @@ class AdminFixtures extends Fixture
             $admin->setName("admin $i");
             $admin->setEmail("admin$i@gmail.com");
             $admin->setBirthday(\DateTime::createFromFormat('Y-m-d', '2001-05-08'));
+            $admin->setAvatar("avatar.png");
             $manager->persist($admin);
         }
         $manager->flush();

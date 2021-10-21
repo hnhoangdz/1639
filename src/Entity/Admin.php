@@ -32,6 +32,11 @@ class Admin
      */
     private $birthday;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $avatar;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -72,4 +77,17 @@ class Admin
 
         return $this;
     }
+
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar($avatar)
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
 }
