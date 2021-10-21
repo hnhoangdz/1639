@@ -32,32 +32,32 @@
 						<tbody>
 							<tr>
 								<th>Name</th>
-								<td>{{ aCourseClass.name }}</td>
+								<td  style="font-family: Segoe UI; font-size: 18px;">{{ aCourseClass.name }}</td>
 							</tr>
 							<tr>
 								<th>Date Start</th>
-								<td>{{ aCourseClass.dateStart|date('d/m/Y') }}</td>
+								<td style="font-family: Segoe UI; font-size: 18px;">{{ aCourseClass.dateStart|date('d/m/Y') }}</td>
 							</tr>
 							<tr>
 								<th>Date End</th>
-								<td>{{ aCourseClass.dateEnd|date('d/m/Y') }}</td>
+								<td  style="font-family: Segoe UI; font-size: 18px;">{{ aCourseClass.dateEnd|date('d/m/Y') }}</td>
 							</tr>
 							<tr>
 								<th>Course</th>
-								<td>
+								<td  style="font-family: Segoe UI; font-size: 18px;">
 									<a href="#">{{ aCourseClass.courseID.name }}</a>
 								</td>
 							</tr>
 							<tr>
 								<th>Teacher</th>
-								<td>
+								<td  style="font-family: Segoe UI; font-size: 18px;">
 									{# {{ path('teacher_detail', {'id': magazine.author.id }) }} #}
 									<a href="#">{{aCourseClass.teacherID.name }}</a>
 								</td>
 							</tr>
 							<tr>
 								<th>List Student</th>
-								<td>
+								<td  style="font-family: Segoe UI; font-size: 18px;">
 									{% for s in aCourseClass.studentID %}
 										<a href="#">
 											{{ s.name }}
