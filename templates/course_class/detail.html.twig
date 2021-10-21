@@ -1,5 +1,7 @@
 {% extends 'base.html.twig' %}
-
+{% block title %}
+	View Class
+{% endblock %}
 {% block body %}
 	<div class="container col-md-6 mt-3">
 		<h1 class="text-success text-center text-capitalize" style="font-size: 35px;"><b>Class Detail</b></h1>
@@ -7,66 +9,54 @@
 			<div class="col-9">
 				<a class="btn btn-success mt-2" href="{{ path('course_class_index') }}" style="font-size: 25px;"> < Class list</a>
 			</div>
+			{% if is_granted('ROLE_ADMIN') %}
 			<div class="col-1">
 				<a class="btn btn-warning mt-2" href="{{ path('course_class_edit', {'id': aCourseClass.id}) }}" style="font-size: 25px;">Edit</a>
 			</div>
 			<div class="col-1 ml-0">
 				<a class="btn btn-danger mt-2" href="{{ path('course_class_delete', {'id': aCourseClass.id}) }}" onclick="return confirm('Are you sure to delete this book ?')" style="font-size: 25px;">Delete</a>
 			</div>
-					
-					
-					<table class="table table-success mt-2" >
-						{# <thead>
-																<tr>
-																	<th></th>
-																	<th>Cover</th>
-																	<th>Author</th>
-																	<th>Publisher</th>
-																	<th>Quantity</th>
-																	<th>Price</th>
-																	{% if is_granted('ROLE_ADMIN') %}
-																		<th>Menu</th>
-																	{% endif %}
-																</tr>
-															</thead> #}
-						<tbody>
-							<tr>
-								<th>Name</th>
-								<td  style="font-family: Segoe UI; font-size: 18px;">{{ aCourseClass.name }}</td>
-							</tr>
-							<tr>
-								<th>Date Start</th>
-								<td style="font-family: Segoe UI; font-size: 18px;">{{ aCourseClass.dateStart|date('d/m/Y') }}</td>
-							</tr>
-							<tr>
-								<th>Date End</th>
-								<td  style="font-family: Segoe UI; font-size: 18px;">{{ aCourseClass.dateEnd|date('d/m/Y') }}</td>
-							</tr>
-							<tr>
-								<th>Course</th>
-								<td  style="font-family: Segoe UI; font-size: 18px;">
-									<a href="#">{{ aCourseClass.courseID.name }}</a>
-								</td>
-							</tr>
-							<tr>
-								<th>Teacher</th>
-								<td  style="font-family: Segoe UI; font-size: 18px;">
-									{# {{ path('teacher_detail', {'id': magazine.author.id }) }} #}
-									<a href="#">{{aCourseClass.teacherID.name }}</a>
-								</td>
-							</tr>
-							<tr>
-								<th>List Student</th>
-								<td  style="font-family: Segoe UI; font-size: 18px;">
-									{% for s in aCourseClass.studentID %}
-										<a href="#">
-											{{ s.name }}
-										</a>
-										<br>
-									{% endfor %}
-								</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			{% endblock %}
+			{% endif %}
+			<table class="table table-success mt-2" >
+				<tbody>
+					<tr>
+						<th>Name</th>
+						<td  style="font-family: Segoe UI; font-size: 18px;">{{ aCourseClass.name }}</td>
+					</tr>
+					<tr>
+						<th>Date Start</th>
+						<td style="font-family: Segoe UI; font-size: 18px;">{{ aCourseClass.dateStart|date('d/m/Y') }}</td>
+					</tr>
+					<tr>
+						<th>Date End</th>
+						<td  style="font-family: Segoe UI; font-size: 18px;">{{ aCourseClass.dateEnd|date('d/m/Y') }}</td>
+					</tr>
+					<tr>
+						<th>Course</th>
+						<td  style="font-family: Segoe UI; font-size: 18px;">
+							<a href="#">{{ aCourseClass.courseID.name }}</a>
+						</td>
+					</tr>
+					<tr>
+						<th>Teacher</th>
+						<td  style="font-family: Segoe UI; font-size: 18px;">
+							{# {{ path('teacher_detail', {'id': magazine.author.id }) }} #}
+							<a href="#">{{aCourseClass.teacherID.name }}</a>
+						</td>
+					</tr>
+					<tr>
+						<th>List Student</th>
+						<td  style="font-family: Segoe UI; font-size: 18px;">
+							{% for s in aCourseClass.studentID %}
+								<a href="#">
+									{{ s.name }}
+								</a>
+								<br>
+							{% endfor %}
+						</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}

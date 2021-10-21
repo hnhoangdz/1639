@@ -51,6 +51,7 @@ class CourseClassController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/courseClass/delete/{id}", name="course_class_delete")
      */
     public function courseClassDelete($id){
@@ -67,6 +68,7 @@ class CourseClassController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/courseClass/add", name="course_class_add")
      */
     public function courseClassAdd(Request $request){
@@ -90,6 +92,7 @@ class CourseClassController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/courseClass/edit/{id}", name="course_class_edit")
      */
     public function courseClassEdit(Request $request, $id){

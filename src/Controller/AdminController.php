@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Admin;
 use App\Form\AdminType;
 use Symfony\Component\HttpFoundation\Request;
@@ -10,12 +11,17 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 /**
- * @IsGranted("ROLE_USER")
+ * @IsGranted("ROLE_ADMIN")
  */
 class AdminController extends AbstractController
 {
+    private $hasher;
+    public function __construct (UserPasswordHasherInterface $hasher){
+        $this->hasher = $hasher;
+    }
     #[Route('/admin', name: 'admin_index')]
     public function adminIndex(): Response
     {
@@ -54,8 +60,11 @@ class AdminController extends AbstractController
         if ($admin == null) {
             $this->addFlash('Error', 'Admin not found !');
         } else { 
+            $email = $admin->getEmail();
+            $user = $this->getDoctrine()->getRepository(User::class)->findOneBy([ 'username' => $email ]);
             $manager = $this->getDoctrine()->getManager();
             $manager->remove($admin);
+            $manager->remove($user);
             $manager->flush();
             $this->addFlash('Success', 'Admin has been deleted !');
         }
@@ -68,6 +77,7 @@ class AdminController extends AbstractController
     public function addAdmin(Request $request)
     {
         $admin = new Admin();
+        
         $form = $this->createForm(AdminType::class, $admin);
         $form->handleRequest($request);
 
@@ -97,6 +107,12 @@ class AdminController extends AbstractController
 
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($admin);
+
+            $user = new User();
+            $user->setUsername($admin->getEmail());
+            $user->setPassword($this->hasher->hashPassword($user,"123456"));
+            $user->setRoles(['ROLE_ADMIN']);
+            $manager->persist($user);
             $manager->flush();
 
             $this->addFlash('Success', "Add admin successfully !");
@@ -117,11 +133,14 @@ class AdminController extends AbstractController
     public function editAdmin(Request $request, $id)
     {
         $admin = $this->getDoctrine()->getRepository(Admin::class)->find($id);
+        $avatar = $admin->getAvatar();
+        $email = $admin->getEmail();
+        $user = $this->getDoctrine()->getRepository(User::class)->findOneBy([ 'username' => $email ]);
         if ($admin == null) {
             $this->addFlash('Error', 'Admin not found !');
             return $this->redirectToRoute('admin_index');
         } else { 
-            $form = $this->createForm(AuthorType::class, $admin);
+            $form = $this->createForm(AdminType::class, $admin);
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
@@ -142,10 +161,14 @@ class AdminController extends AbstractController
                         //throwException($e);
                     }
                     $admin->setAvatar($imageName);
+                }else{
+                    $admin->setAvatar($avatar);
                 }
-
+                    
+                    $user->setUsername($admin->getEmail());
                     $manager = $this->getDoctrine()->getManager();
                     $manager->persist($admin);
+                    $manager->persist($user);
                     $manager->flush();
 
                     $this->addFlash('Success', "Update admin successfully !");
