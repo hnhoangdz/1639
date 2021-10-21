@@ -10,9 +10,9 @@
 					<th>Name</th>
 					<th>Cover</th>
 					<th>Description</th>
-					{# {% if is_granted('ROLE_ADMIN') %} #}
+					{% if is_granted('ROLE_ADMIN') %}
 						<th>Menu</th>
-					{# {% endif %} #}
+					{% endif %}
 				</tr>
 			</thead>
 			<tbody>
@@ -22,12 +22,12 @@
 						<img src="{{ asset('img/category/'~aCategory.image)}}" alt="" width="120" height="100">
 					</td>
 					<td>{{ aCategory.description }}</td>
-					{# {% if is_granted('ROLE_ADMIN') %} #}
+					{% if is_granted('ROLE_ADMIN') %}
 						<td>
 							<a class="btn btn-info" href="{{ path('category_edit', {'id': aCategory.id}) }}">EDIT</a>
 							<a class="btn btn-warning" href="{{ path('category_delete', {'id': aCategory.id}) }}" onclick="return confirm('Are you sure to delete this category ?')">DELETE</a>
 						</td>
-					{# {% endif %} #}
+					{% endif %}
 				</tr>
 			</tbody>
 		</table>

@@ -28,19 +28,26 @@
 		<nav class="navbar navbar-light" style="background-color: #6aa4ba;">
 		<div class="container mt-4">
 			<ul id="nav">
-				<li class="left">
+				<li class="right">
 					<h2>
 						<a href="{{ path('home') }}">Home</a>
 					</h2>
 				</li>
+				{% if is_granted('ROLE_ADMIN') %}
+				<li class="left">
+					<h2>
+						<a href="{{ path('admin_index') }}">Admin</a>
+					</h2>
+				</li>
+				{% endif %}
 				<li class="right">
 					<h2>
-						<a href="#">Teacher</a>
+						<a href="{{ path('teacher_index')}}">Teacher</a>
 					</h2>
 				</li>
 				<li class="left">
 					<h2>
-						<a href="#">Student</a>
+						<a href="{{path('student_index')}}">Student</a>
 					</h2>
 				</li>
 				<li class="right">
@@ -60,7 +67,7 @@
 				</li>
 				<li class="left">
 					<h2>
-						<a href="#">Logout</a>
+						<a href="{{ path('app_logout') }}">Logout</a>
 					</h2>
 				</li>
 			</ul>

@@ -11,9 +11,9 @@
 					<th>Cover</th>
 					<th>Description</th>
 					<th>Category</th>
-					{# {% if is_granted('ROLE_ADMIN') %} #}
+					{% if is_granted('ROLE_ADMIN') %}
 						<th>Menu</th>
-					{# {% endif %} #}
+					{% endif %}
 				</tr>
 			</thead>
 			<tbody>
@@ -28,12 +28,12 @@
 							{{ aCourse.categoryID.name }}
 						</a>
 					</td>
-					{# {% if is_granted('ROLE_ADMIN') %} #}
+					{% if is_granted('ROLE_ADMIN') %}
 						<td>
 							<a class="btn btn-info" href="{{ path('course_edit', {'id': aCourse.id}) }}">EDIT</a>
 							<a class="btn btn-warning" href="{{ path('course_delete', {'id': aCourse.id}) }}" onclick="return confirm('Are you sure to delete this category ?')">DELETE</a>
 						</td>
-					{# {% endif %} #}
+					{% endif %}
 				</tr>
 			</tbody>
 		</table>

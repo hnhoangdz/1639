@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="container col-md-6 mt-3">
+
+		<h1 class="text-success text-center text-capitalize" style="font-size: 35px;">
+			<b>STUDENT LIST</b>
+		</h1>
+		<a class="btn btn-info mt-2" href="{{ path('student_add') }}" style="font-size: 25px;">Add Student</a>
+		<table class="table table-striped text-center mt-2" style="width: 600px">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Name</th>
+					<th>Avatar</th>
+					<th width="100%">Menu</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for s in students %}
+					<tr style="font-family: Segoe UI; font-size: 16px;">
+						<td>{{ s.id }}</td>
+						<td>{{ s.name }}</td>
+						<td>
+							<a href="{{ path('student_detail', {'id': s.id}) }}">
+								<img style="border-radius: 50%;" src="{{asset('img/student/'~s.avatar)}}" alt="student" width="100" height="120">
+							</a>
+						</td>
+						<td class="">
+							<a class="btn btn-warning" href="{{ path('student_edit', {'id': s.id}) }}">Edit</a>
+							<a class="btn btn-danger" href="{{ path('student_delete', {'id': s.id}) }}" onclick="return confirm('Are you sure to delete this student ?')">Delete</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

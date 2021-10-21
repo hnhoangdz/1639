@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<div class="container col-md-6 mt-3">
+
+		<h1 class="text-success text-center text-capitalize" style="font-size: 35px;">
+			<b>Student Detail</b>
+		</h1>
+		<a class="btn btn-info mt-2" href="{{ path('student_index') }}" style="font-size: 25px;">< Student List</a>
+		<table class="table table-striped text-center mt-2" style="width: 600px">
+			<thead>
+				<tr>
+					<th>Name</th>
+					<th>Email</th>
+					<th>Birthday</th>
+					<th>Class</th>
+					<th width="100%">Menu</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr style="font-family: Segoe UI; font-size: 16px;">
+					<td>{{ student.name }}</td>
+					<td>{{ student.email }}</td>
+					<td>{{ student.birthday|date('d/m/Y')}}</td>
+					<td>
+						{% for class in student.courseClasses %}
+							<a style="text-decoration: none;"href="{{path('course_class_detail',{'id':class.id})}}">
+								{{ class.name}}
+							</a>
+							<br>
+						{% endfor %}
+					</td>
+					<td>
+						<a class="btn btn-warning" href="{{ path('student_edit', {'id': student.id}) }}">Edit</a>
+						<a class="btn btn-danger" href="{{ path('student_delete', {'id': student.id}) }}" onclick="return confirm('Are you sure to delete this student ?')">Delete</a>
+					</td>
+				</tr>
+		</tbody>
+	</table>
+</div>{% endblock %}
