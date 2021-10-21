@@ -7,8 +7,12 @@ use App\Form\CourseClassType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+/**
+ * @IsGranted("ROLE_USER")
+ */
 class CourseClassController extends AbstractController
 {
     /**
@@ -47,6 +51,7 @@ class CourseClassController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/courseClass/delete/{id}", name="course_class_delete")
      */
     public function courseClassDelete($id){
@@ -63,6 +68,7 @@ class CourseClassController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/courseClass/add", name="course_class_add")
      */
     public function courseClassAdd(Request $request){
@@ -86,6 +92,7 @@ class CourseClassController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/courseClass/edit/{id}", name="course_class_edit")
      */
     public function courseClassEdit(Request $request, $id){

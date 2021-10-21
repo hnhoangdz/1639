@@ -55,3 +55,11 @@
     -moz-transform: rotate(10deg) scale(1.2);
     -o-transform: rotate(10deg) scale(1.2);
    }
+   input, optgroup, select, textarea {
+      font-family: 'Segoe UI';
+      font-size: 18px;
+   }
+   .thuong{
+      font-family: 'Segoe UI';
+      font-size: 18px;
+   }

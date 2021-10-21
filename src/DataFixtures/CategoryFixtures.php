@@ -15,16 +15,19 @@ class CategoryFixtures extends Fixture
         $category = new Category();
         $category->setName("Business");
         $category->setDescription("Business is a digital media company and B2B");
+        $category->setImage("business.jpg");
         $manager->persist($category);
 
         $category = new Category();
         $category->setName("Computing");
         $category->setDescription("Computing is any goal-oriented activity requiring, benefiting from, or creating computing machinery");
+        $category->setImage("computing.jpg");
         $manager->persist($category);
 
         $category = new Category();
         $category->setName("Graphic Design");
         $category->setDescription("Graphic design is the profession and academic discipline whose activity consists in projecting");
+        $category->setImage("gp.jpg");
         $manager->persist($category);
         $manager->flush();
     }

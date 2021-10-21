@@ -8,24 +8,32 @@
 			<thead>
 				<tr>
 					<th>Name</th>
+					<th>Cover</th>
 					<th>Description</th>
 					<th>Category</th>
-					{# {% if is_granted('ROLE_ADMIN') %} #}
+					{% if is_granted('ROLE_ADMIN') %}
 						<th>Menu</th>
-					{# {% endif %} #}
+					{% endif %}
 				</tr>
 			</thead>
 			<tbody>
 				<tr style="font-family: Segoe UI; font-size: 18px;">
 					<td>{{ aCourse.name }}</td>
+					<td>
+						<img src="{{ asset('img/course/'~aCourse.image)}}" alt="" width="120" height="100">
+					</td>
 					<td>{{ aCourse.description }}</td>
-					<td>{{ aCourse.categoryID.name }}</td>
-					{# {% if is_granted('ROLE_ADMIN') %} #}
+					<td>
+						<a>
+							{{ aCourse.categoryID.name }}
+						</a>
+					</td>
+					{% if is_granted('ROLE_ADMIN') %}
 						<td>
 							<a class="btn btn-info" href="{{ path('course_edit', {'id': aCourse.id}) }}">EDIT</a>
 							<a class="btn btn-warning" href="{{ path('course_delete', {'id': aCourse.id}) }}" onclick="return confirm('Are you sure to delete this category ?')">DELETE</a>
 						</td>
-					{# {% endif %} #}
+					{% endif %}
 				</tr>
 			</tbody>
 		</table>

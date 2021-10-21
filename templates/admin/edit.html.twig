@@ -1,13 +1,13 @@
 {% extends "base.html.twig" %}
 
 {% block title %}
-	Add Class
+	Edit Admin
 {% endblock %}
 
 {% block body %}
 	<div class="container-fluid col-8 mt-3">
 		<h1 class="text-success text-center text-capitalize" style="font-size: 35px;">
-			<b>ADD NEW BOOK</b>
+			<b>ADD NEW ADMIN</b>
 		</h1>
 		{{ form_start(form) }}
 		<div class="form-group">
@@ -19,47 +19,32 @@
             }}
 		</div>
 		<div class="form-group">
-			{{ form_label(form.dateStart) }}
-			{{ form_widget(form.dateStart,
+			{{ form_label(form.email) }}
+			{{ form_widget(form.email,
                {
                   'attr': { 'class' : 'form-control'}
                })
             }}
 		</div>
 		<div class="form-group">
-			{{ form_label(form.dateEnd) }}
-			{{ form_widget(form.dateEnd,
+			{{ form_label(form.birthday) }}
+			{{ form_widget(form.birthday,
                {
                   'attr': { 'class' : 'form-control'}
                })
             }}
 		</div>
 		<div class="form-group">
-			{{ form_label(form.teacherID) }}
-			{{ form_widget(form.teacherID,
+			{{ form_label(form.avatar) }}
+			{{ form_widget(form.avatar,
                {
                   'attr': { 'class' : 'form-control'}
                })
             }}
 		</div>
-		<div class="form-group">
-			{{ form_label(form.courseID) }}
-			{{ form_widget(form.courseID,
-               {
-                  'attr': { 'class' : 'form-control'}
-               })
-            }}
-		</div>
-		<div class="form-group">
-			{{ form_label(form.studentID) }}
-			{{ form_widget(form.studentID,
-               {
-                  'attr': { 'class' : 'form-control'}
-               })
-            }}
-		</div>
+
 		<div class="form-group text-center mt-3 mb-4">
-			<button class="btn btn-success" type="submit">ADD</button>
+			<button class="btn btn-success" type="submit">UPDATE</button>
 		</div>
 		{{ form_end(form) }}
 	</div>
