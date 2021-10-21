@@ -15,6 +15,7 @@ class CourseFixtures extends Fixture
             $course = new Course();
             $course->setName("Course $i");
             $course->setDescription("Description $i");
+            $course->setImage("course.png");
             $manager->persist($course);
         }
 

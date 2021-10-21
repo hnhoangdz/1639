@@ -8,6 +8,7 @@
 			<thead>
 				<tr>
 					<th>Name</th>
+					<th>Cover</th>
 					<th>Description</th>
 					{# {% if is_granted('ROLE_ADMIN') %} #}
 						<th>Menu</th>
@@ -17,6 +18,9 @@
 			<tbody>
 				<tr style="font-family: Segoe UI; font-size: 18px;">
 					<td>{{ aCategory.name }}</td>
+					<td>
+						<img src="{{ asset('img/category/'~aCategory.image)}}" alt="" width="120" height="100">
+					</td>
 					<td>{{ aCategory.description }}</td>
 					{# {% if is_granted('ROLE_ADMIN') %} #}
 						<td>
