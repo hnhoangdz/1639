@@ -19,7 +19,7 @@ class CourseController extends AbstractController
     public function index(): Response
     {
         $course = $this->getDoctrine()->getRepository(Course::class)->findAll();
-        if($course == null){
+        if ($course == null) {
             $this->addFlash('Error', 'Course List is empty');
         }
         return $this->render('course/index.html.twig', [
@@ -30,8 +30,9 @@ class CourseController extends AbstractController
     /**
      * @Route("/course/detail/{id}", name="course_detail")
      */
-    public function courseDetail($id){
-        $aCourse= $this->getDoctrine()->getRepository(Course::class)->find($id);
+    public function courseDetail($id)
+    {
+        $aCourse = $this->getDoctrine()->getRepository(Course::class)->find($id);
         if ($aCourse == null) {
             $this->addFlash('Error', 'Course not found');
             return $this->redirectToRoute('course_index');
@@ -46,9 +47,11 @@ class CourseController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/course/add", name="course_add")
      */
-    public function courseAdd(Request $request){
+    public function courseAdd(Request $request)
+    {
         $course = new Course();
         $form = $this->createForm(CourseType::class, $course);
         $form->handleRequest($request);
@@ -68,10 +71,12 @@ class CourseController extends AbstractController
         );
     }
 
-     /**
+    /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/course/edit/{id}", name="course_edit")
      */
-    public function courseEdit(Request $request, $id){
+    public function courseEdit(Request $request, $id)
+    {
         $course = $this->getDoctrine()->getRepository(Course::class)->find($id);
         if ($course == null) {
             $this->addFlash('Error', 'Course not found');
@@ -97,6 +102,7 @@ class CourseController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("course/delete/{id}", name="course_delete")
      */
     public function deleteCourse($id)

@@ -4,11 +4,9 @@
 	<div class="container col-md-6 mt-3">
 	
 		<h1 class="text-success text-center text-capitalize" style="font-size: 35px;"><b>CATEGORY LIST</b></h1>
-		{# {% if is_granted('ROLE_STAFF') %} #}
+		{% if is_granted('ROLE_ADMIN') %}
 		<a class="btn btn-info mt-2" href="{{ path('category_add') }}" style="font-size: 25px;">Add Category</a>
-		{# {% endif %} #}
-		{# <a class="btn btn-outline-success mt-2" href="{{ path('book_asc') }}">Tang</a>
-		<a class="btn btn-outline-success mt-2" href="{{ path('book_desc') }}">Giam</a> #}
+		{% endif %}
 		<table class="table table-striped text-center mt-2" >
 			<thead>
 				<tr>
@@ -16,7 +14,9 @@
 					<th>Name</th>
 					<th>Cover</th>
                     <th>Description</th>
+					{% if is_granted('ROLE_ADMIN') %}
 					<th width="40%">Menu</th>
+					{% endif %}
 				</tr>
 			</thead>
 			<tbody >
@@ -30,13 +30,12 @@
 							</a>
 						</td>
                         <td>{{ c.description }}</td>
-						{# {% if is_granted('ROLE_ADMIN') %} #}
+						{% if is_granted('ROLE_ADMIN') %}
 							<td>
-                                {# <a class="btn btn-success" href="{{ path('category_detail', {'id': c.id}) }}">View</a> #}
 								<a class="btn btn-warning" href="{{ path('category_edit', {'id': c.id}) }}">Edit</a>
 								<a class="btn btn-danger" href="{{ path('category_delete', {'id': c.id}) }}" onclick="return confirm('Are you sure to delete this category ?')">Delete</a>
 							</td>
-						{# {% endif %} #}
+						{% endif %}
 					</tr>
 				{% endfor %}
 			</tbody>

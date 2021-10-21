@@ -46,6 +46,7 @@ class CategoryController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/category/add", name="category_add")
      */
     public function categoryAdd(Request $request){
@@ -69,6 +70,7 @@ class CategoryController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("/category/edit/{id}", name="category_edit")
      */
     public function categoryEdit(Request $request, $id){
@@ -97,6 +99,7 @@ class CategoryController extends AbstractController
     }
 
     /**
+     * @IsGranted("ROLE_ADMIN")
      * @Route("category/delete/{id}", name="category_delete")
      */
     public function categoryDelete($id)
