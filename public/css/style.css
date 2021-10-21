@@ -1,5 +1,5 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Architects+Daughter&family=Lobster&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Architects+Daughter&display=swap');
 * {
     padding: 0;
     margin: 0;
@@ -8,7 +8,8 @@
  body {
     background: #f4f1e5;
     color: #054963;
-    font-family: helvetica, sans-serif;
+    font-family:'Amatic SC', cursive;
+    font-size: 30px;
  }
    ul li {
     float: left;
