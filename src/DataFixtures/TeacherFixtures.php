@@ -17,6 +17,7 @@ class TeacherFixtures extends Fixture
             $teacher->setName("teacher $i");
             $teacher->setEmail("teacher$i@gmail.com");
             $teacher->setBirthday(\DateTime::createFromFormat('Y-m-d', '1990-05-08'));
+            $teacher->setAvatar("teacher.jpg");
             $manager->persist($teacher);
         }
         $manager->flush();

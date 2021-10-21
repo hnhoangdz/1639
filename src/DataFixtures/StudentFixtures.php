@@ -17,6 +17,7 @@ class StudentFixtures extends Fixture
             $student->setName("student $i");
             $student->setEmail("student$i@gmail.com");
             $student->setBirthday(\DateTime::createFromFormat('Y-m-d', '2001-05-08'));
+            $student->setAvatar("student.jpg");
             $manager->persist($student);
         }
         $manager->flush();

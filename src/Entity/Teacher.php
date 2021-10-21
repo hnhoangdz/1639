@@ -39,6 +39,11 @@ class Teacher
      */
     private $courseClasses;
 
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $avatar;
+
     public function __construct()
     {
         $this->courseClasses = new ArrayCollection();
@@ -112,6 +117,19 @@ class Teacher
             }
         }
 
+        return $this;
+    }
+
+    public function getAvatar()
+    {
+        return $this->avatar;
+    }
+
+    public function setAvatar($avatar)
+    {
+        if($avatar != null) {
+            $this->avatar = $avatar;
+        }
         return $this;
     }
 }
