@@ -24,7 +24,7 @@
 					</td>
 					<td>{{ aCourse.description }}</td>
 					<td>
-						<a>
+						<a href="{{ path('category_detail', {'id': aCourse.categoryID.id}) }}">
 							{{ aCourse.categoryID.name }}
 						</a>
 					</td>
