@@ -2,13 +2,14 @@
 
 {% block body %}
 	<div class="container col-md-6 mt-3">
-		<h1 class="text-center" style="font-family: 'Amatic SC', cursive;">Class List</h3>
+	
+		<h1 class="text-success text-center text-capitalize" style="font-size: 35px;"><b>CLASS LIST</b></h1>
 		{# {% if is_granted('ROLE_STAFF') %} #}
-		<a class="btn btn-outline-success mt-2" href="{{ path('course_class_add') }}">ADD CLASS</a>
+		<a class="btn btn-info mt-2" href="{{ path('course_class_add') }}" style="font-size: 25px;">Add Class</a>
 		{# {% endif %} #}
 		{# <a class="btn btn-outline-success mt-2" href="{{ path('book_asc') }}">Tang</a>
 		<a class="btn btn-outline-success mt-2" href="{{ path('book_desc') }}">Giam</a> #}
-		<table class="table table-striped text-center mt-2">
+		<table class="table table-striped text-center mt-2" >
 			<thead>
 				<tr>
 					<th>ID</th>
@@ -21,7 +22,7 @@
 
 				</tr>
 			</thead>
-			<tbody>
+			<tbody >
 				{% for c in courseClass %}
 					<tr>
 						<td>{{ c.id }}</td>
@@ -30,9 +31,9 @@
                         <td>{{ c.dateEnd|date('d/m/Y') }}</td>
 						{# {% if is_granted('ROLE_ADMIN') %} #}
 							<td>
-                                <a class="btn btn-success" href="{{ path('course_class_detail', {'id': c.id}) }}">VIEW</a>
-								<a class="btn btn-info" href="{{ path('course_class_edit', {'id': c.id}) }}">EDIT</a>
-								<a class="btn btn-warning" href="{{ path('course_class_delete', {'id': c.id}) }}" onclick="return confirm('Are you sure to delete this book ?')">DELETE</a>
+                                <a class="btn btn-success" href="{{ path('course_class_detail', {'id': c.id}) }}">View</a>
+								<a class="btn btn-warning" href="{{ path('course_class_edit', {'id': c.id}) }}">Edit</a>
+								<a class="btn btn-danger" href="{{ path('course_class_delete', {'id': c.id}) }}" onclick="return confirm('Are you sure to delete this book ?')">Delete</a>
 							</td>
 						{# {% endif %} #}
 					</tr>

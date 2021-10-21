@@ -2,16 +2,16 @@
 
 {% block body %}
 	<div class="container col-md-6 mt-3">
-		<h3 class="text-success text-center text-capitalize">CLASS DETAIL</h3>
+		<h1 class="text-success text-center text-capitalize" style="font-size: 35px;"><b>Class Detail</b></h1>
 		<div class="row align-items-start">
 			<div class="col-9">
-				<a class="btn btn-outline-success mt-2" href="{{ path('course_class_index') }}"> < CLASS LIST</a>
+				<a class="btn btn-success mt-2" href="{{ path('course_class_index') }}" style="font-size: 25px;"> < Class list</a>
 			</div>
 			<div class="col-1">
-				<a class="btn btn-outline-warning mt-2" href="{{ path('course_class_index') }}">EDIT</a>
+				<a class="btn btn-warning mt-2" href="{{ path('course_class_edit', {'id': aCourseClass.id}) }}" style="font-size: 25px;">Edit</a>
 			</div>
 			<div class="col-1 ml-0">
-				<a class="btn btn-outline-danger mt-2" href="{{ path('course_class_index') }}">DELETE</a>
+				<a class="btn btn-danger mt-2" href="{{ path('course_class_delete', {'id': aCourseClass.id}) }}" onclick="return confirm('Are you sure to delete this book ?')" style="font-size: 25px;">Delete</a>
 			</div>
 					
 					

@@ -57,7 +57,7 @@ class CourseClassController extends AbstractController
             $manager = $this->getDoctrine()->getManager();
             $manager->remove($aCourseClass);
             $manager->flush();
-            $this->addFlash('Success', 'Book has been deleted');
+            $this->addFlash('Success', 'Class has been deleted');
         }
         return $this->redirectToRoute('course_class_index');
     }
@@ -74,7 +74,7 @@ class CourseClassController extends AbstractController
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($courseClass);
             $manager->flush();
-            $this->addFlash('Success', "Add book successfully !");
+            $this->addFlash('Success', "Add Class successfully !");
             return $this->redirectToRoute('course_class_index');
         }
         return $this->render(
@@ -101,7 +101,7 @@ class CourseClassController extends AbstractController
                 $manager = $this->getDoctrine()->getManager();
                 $manager->persist($aCourseClass);
                 $manager->flush();
-                $this->addFlash('Success', "Edit book successfully !");
+                $this->addFlash('Success', "Edit Class successfully !");
                 return $this->redirectToRoute('course_class_index');
             }
             return $this->render(
