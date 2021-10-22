@@ -14,7 +14,9 @@
 					<th>Email</th>
 					<th>Birthday</th>
 					<th>Class</th>
+					{% if is_granted('ROLE_ADMIN') %}
 					<th width="100%">Menu</th>
+					{% endif %}
 				</tr>
 			</thead>
 			<tbody>
@@ -30,10 +32,12 @@
 							<br>
 						{% endfor %}
 					</td>
+					{% if is_granted('ROLE_ADMIN') %}
 					<td class="">
 						<a class="btn btn-warning" href="{{ path('teacher_edit', {'id': teacher.id}) }}">Edit</a>
 						<a class="btn btn-danger" href="{{ path('teacher_delete', {'id': teacher.id}) }}" onclick="return confirm('Are you sure to delete this teacher ?')">Delete</a>
 					</td>
+					{% endif %}
 				</tr>
 		</tbody>
 	</table>
