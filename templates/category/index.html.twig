@@ -2,36 +2,18 @@
 
 {% block body %}
 	<div class="container col-md-6 mt-3">
-<<<<<<< HEAD
-
-		<h1 class="text-success text-center text-capitalize" style="font-size: 35px;">
-			<b>CATEGORY LIST</b>
-		</h1>
-		{# {% if is_granted('ROLE_STAFF') %} #}
-		<a class="btn btn-info mt-2" href="{{ path('category_add') }}" style="font-size: 25px;">Add Category</a>
-		{# {% endif %} #}
-		{# <a class="btn btn-outline-success mt-2" href="{{ path('book_asc') }}">Tang</a>
-				<a class="btn btn-outline-success mt-2" href="{{ path('book_desc') }}">Giam</a> #}
-		<table class="table table-striped text-center mt-2">
-=======
-	
 		<h1 class="text-success text-center text-capitalize" style="font-size: 35px;"><b>CATEGORY LIST</b></h1>
 		{% if is_granted('ROLE_ADMIN') %}
 		<a class="btn btn-info mt-2" href="{{ path('category_add') }}" style="font-size: 25px;">Add Category</a>
 		{% endif %}
 		<table class="table table-striped text-center mt-2" >
->>>>>>> f3f316ca2be8a7a5e9c7c58b6c09b031e492ba9f
 			<thead>
 				<tr>
 					<th>ID</th>
 					<th>Name</th>
-<<<<<<< HEAD
-					<th>Description</th>
-=======
 					<th>Cover</th>
                     <th>Description</th>
 					{% if is_granted('ROLE_ADMIN') %}
->>>>>>> f3f316ca2be8a7a5e9c7c58b6c09b031e492ba9f
 					<th width="40%">Menu</th>
 					{% endif %}
 				</tr>
@@ -41,14 +23,6 @@
 					<tr style="font-family: Segoe UI; font-size: 18px;">
 						<td>{{ c.id }}</td>
 						<td>{{ c.name }}</td>
-<<<<<<< HEAD
-						<td>{{ c.description }}</td>
-						<td>
-							<a class="btn btn-success" href="{{ path('student_detail', {'id': c.id}) }}">View</a>
-							<a class="btn btn-warning" href="{{ path('category_edit', {'id': c.id}) }}">Edit</a>
-							<a class="btn btn-danger" href="{{ path('category_delete', {'id': c.id}) }}" onclick="return confirm('Are you sure to delete this category ?')">Delete</a>
-						</td>
-=======
 						<td>
 							<a href="{{ path('category_detail', {'id': c.id}) }}">
 								<img src="{{ asset('img/category/'~c.image)}}" alt="" width="120" height="100">
@@ -61,7 +35,6 @@
 								<a class="btn btn-danger" href="{{ path('category_delete', {'id': c.id}) }}" onclick="return confirm('Are you sure to delete this category ?')">Delete</a>
 							</td>
 						{% endif %}
->>>>>>> f3f316ca2be8a7a5e9c7c58b6c09b031e492ba9f
 					</tr>
 				{% endfor %}
 			</tbody>

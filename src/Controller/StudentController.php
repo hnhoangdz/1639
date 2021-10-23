@@ -2,17 +2,27 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Student;
 use App\Form\StudentType;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use function PHPUnit\Framework\throwException;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
+/**
+ * @IsGranted("ROLE_USER")
+ */
 class StudentController extends AbstractController
 {
+    private $hasher;
+    public function __construct (UserPasswordHasherInterface $hasher){
+        $this->hasher = $hasher;
+    }
     #[Route('/student', name: 'student_index')]
     public function index(): Response
     {
@@ -41,6 +51,10 @@ class StudentController extends AbstractController
             );
         }
     }
+
+    /**
+     * @IsGranted("ROLE_ADMIN")
+     */
     #[Route('/student/delete/{id}', name: 'student_delete')]
     public function studentDetele($id)
     {
@@ -56,6 +70,9 @@ class StudentController extends AbstractController
         return $this->redirectToRoute('student_index');
     }
 
+    /**
+     * @IsGranted("ROLE_ADMIN")
+     */
     #[Route('/student/add', name: 'student_add')]
     public function studentAdd(Request $request)
     {
@@ -86,6 +103,11 @@ class StudentController extends AbstractController
             $student->setAvatar($imageName);
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($student);
+            $user = new User();
+            $user->setUsername($student->getEmail());
+            $user->setPassword($this->hasher->hashPassword($user,"123456"));
+            $user->setRoles(['ROLE_USER']);
+            $manager->persist($user);
             $manager->flush();
             $this->addFlash('Success', 'student has been added successfully!');
             return $this->redirectToRoute('student_index');
@@ -98,6 +120,9 @@ class StudentController extends AbstractController
         );
     }
 
+    /**
+     * @IsGranted("ROLE_ADMIN")
+     */
     #[Route('/student/edit/{id}', name: 'student_edit')]
     public function studentEdit(Request $request, $id)
     {
