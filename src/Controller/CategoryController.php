@@ -20,11 +20,13 @@ class CategoryController extends AbstractController
     public function index(): Response
     {
         $category = $this->getDoctrine()->getRepository(Category::class)->findAll();
+        $total = count($category);
         if($category == null){
             $this->addFlash('Error', 'Category List is empty');
         }
         return $this->render('category/index.html.twig', [
             'category' => $category,
+            'total' => $total
         ]);
     }
 

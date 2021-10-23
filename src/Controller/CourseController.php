@@ -20,11 +20,13 @@ class CourseController extends AbstractController
     public function index(): Response
     {
         $course = $this->getDoctrine()->getRepository(Course::class)->findAll();
+        $total = count($course);
         if ($course == null) {
             $this->addFlash('Error', 'Course List is empty');
         }
         return $this->render('course/index.html.twig', [
             'course' => $course,
+            'total' => $total,
         ]);
     }
 
