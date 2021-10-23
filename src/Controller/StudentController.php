@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Student;
 use App\Form\StudentType;
 use Symfony\Component\HttpFoundation\Request;
@@ -97,6 +98,11 @@ class StudentController extends AbstractController
             $student->setAvatar($imageName);
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($student);
+            $user = new User();
+            $user->setUsername($student->getEmail());
+            $user->setPassword($this->hasher->hashPassword($user,"123456"));
+            $user->setRoles(['ROLE_USER']);
+            $manager->persist($user);
             $manager->flush();
             $this->addFlash('Success', 'student has been added successfully!');
             return $this->redirectToRoute('student_index');

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use App\Entity\Teacher;
 use App\Form\TeacherType;
 use Symfony\Component\HttpFoundation\Request;
@@ -97,8 +98,13 @@ class TeacherController extends AbstractController
             $teacher->setAvatar($imageName);
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($teacher);
+            $user = new User();
+            $user->setUsername($teacher->getEmail());
+            $user->setPassword($this->hasher->hashPassword($user,"123456"));
+            $user->setRoles(['ROLE_USER']);
+            $manager->persist($user);
             $manager->flush();
-            $this->addFlash('Success', 'teacher has been added successfully!');
+            $this->addFlash('Success', 'Teacher has been added successfully!');
             return $this->redirectToRoute('teacher_index');
         }
         return $this->render(
