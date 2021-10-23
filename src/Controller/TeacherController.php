@@ -12,12 +12,17 @@ use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 /**
  * @IsGranted("ROLE_USER")
  */
 class TeacherController extends AbstractController
 {
+    private $hasher;
+    public function __construct (UserPasswordHasherInterface $hasher){
+        $this->hasher = $hasher;
+    }
     #[Route('/teacher', name: 'teacher_index')]
     public function index(): Response
     {
