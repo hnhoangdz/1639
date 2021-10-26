@@ -3,7 +3,7 @@
 {% block body %}
 	<div class="container col-md-6 mt-3">
 	
-		<h1 class="text-success text-center text-capitalize" style="font-size: 35px;"><b>COURSE </b></h1>
+		<h1 class="text-success text-center text-capitalize" style="font-size: 35px;"><b>COURSE LIST</b></h1>
 		{% if is_granted('ROLE_ADMIN') %}
 		<a class="btn btn-info mt-2" href="{{ path('course_add') }}" style="font-size: 25px;">Add Course</a>
 		{% endif %}
