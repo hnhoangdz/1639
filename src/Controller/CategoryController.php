@@ -56,31 +56,17 @@ class CategoryController extends AbstractController
         $category = new Category();
         $form = $this->createForm(CategoryType::class, $category);
         $form->handleRequest($request);
-
         if ($form->isSubmitted() && $form->isValid()) {
-            //code xử lý ảnh upload
-            //B1: lấy ảnh từ file upload
             $image = $category->getImage();
-            //B2: tạo tên mới cho ảnh => tên file ảnh là duy nhất
-            $imgName = uniqid(); //unique ID
-            //B3: lấy ra phần đuôi (extension) của ảnh
+            $imgName = uniqid();
             $imgExtension = $image->guessExtension();
-            //B4: gộp tên mới + đuôi tạo thành tên file ảnh hoàn thiện
             $imageName = $imgName . "." . $imgExtension;
-            //B5: di chuyển file ảnh upload vào thư mục chỉ định
             try {
                 $image->move(
-                    $this->getParameter('category_image'),
-                    $imageName
-                    //Lưu ý: cần khai báo tham số đường dẫn của thư mục
-                    //cho "book_cover" ở file config/services.yaml
+                    $this->getParameter('category_image'),$imageName
                 );
-            } catch (FileException $e) {
-
-            }
-            //B6: lưu tên vào database
+            } catch (FileException $e) { }
             $category->setImage($imageName);
-
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($category);
             $manager->flush();

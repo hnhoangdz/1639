@@ -7,24 +7,18 @@
 				Student Management System
 			{% endblock %}
 		</title>
-		{# Run `composer require symfony/webpack-encore-bundle`
-								           and uncomment the following Encore helpers to start using Symfony UX #}
 		{% block stylesheets %}
-			<!-- CSS only -->
 			<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
 			<link rel="preconnect" href="https://fonts.googleapis.com">
 			<link rel="stylesheet" media="screen" href="{{ asset("css/style.css")}}"/>
 		{% endblock %}
-
 		{% block javascripts %}
-			<!-- JavaScript Bundle with Popper -->
 			<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>
 			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		{% endblock %}
 	</head>
 	<body>
 		{% block header %}
-		{# navigation bar #}
 		<nav class="navbar navbar-light" style="background-color: #6aa4ba;">
 		<div class="container mt-4">
 			<ul id="nav">
@@ -73,10 +67,7 @@
 			</ul>
 		</div>
 		</nav>
-
-		
 		{% endblock %}
-		{# tạo 1 section để hiển thị thông báo Flash được gửi từ Controller (back-end) #}
 		<div class="container mt-3 text-center col-md-5">
 			{% for message in app.flashes('Success') %}
 				<p class="alert alert-success">{{ message }}</p>

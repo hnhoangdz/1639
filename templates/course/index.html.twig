@@ -1,8 +1,5 @@
-{% extends 'base.html.twig' %}
-
 {% block body %}
 	<div class="container col-md-6 mt-3">
-	
 		<h1 class="text-success text-center text-capitalize" style="font-size: 35px;"><b>COURSE LIST</b></h1>
 		{% if is_granted('ROLE_ADMIN') %}
 		<a class="btn btn-info mt-2" href="{{ path('course_add') }}" style="font-size: 25px;">Add New Course</a>
@@ -41,9 +38,4 @@
 			</tbody>
 		</table>
 	</div>
-	<center>
-		<div>
-			<p style="font-family: Segoe UI; font-size: 18px;">Total Course: {{total}}</p>
-		</div>
-	</center>
 {% endblock %}
